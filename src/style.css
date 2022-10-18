@@ -35,7 +35,7 @@ main {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    margin: 1em auto;
+    margin: 100px auto;
     color: var(--secondary-color);
 }
 
@@ -53,6 +53,7 @@ main {
 
 .moves{
     margin-top: 1em;
+    margin-bottom: 0.5em;
 }
 
 .dice-container {
