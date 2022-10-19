@@ -7,6 +7,7 @@ function App() {
   const { reward, isAnimating } = useReward('rewardId', 'balloons');
 
   const [dice, setDice] = React.useState(allNewDice());
+  const [moves, setMoves] = React.useState(0);
   const [tenzies, setTenzies] = React.useState(false);
 
   React.useEffect(() => {
@@ -39,10 +40,12 @@ function App() {
     if(tenzies){
       setDice(allNewDice());
       setTenzies(false);
+      setMoves(0)
     } else {
       setDice(prevDice => prevDice.map(die => {
         return die.isHeld ? die : generateNewDie()
       }));
+      setMoves(prevMoves => prevMoves + 1);
     }
   }
 
@@ -58,8 +61,9 @@ function App() {
 
   return (
     <main>
-      <h1 className="title">Tenzies</h1>
+      <h1 className="title">Space Tenzies</h1>
       <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+      <h2 className="moves">{tenzies ? `Game over with ${moves} rolls.` : `Rolls: ${moves}`} </h2>
       <div onClick={holdDice} className="dice-container">
         {diceElements}
       </div>
